@@ -7,6 +7,7 @@ import './Graph.css';
  * Props declaration for <Graph />
  */
 interface IProps {
+    // Gets data through the server
   data: ServerRespond[],
 }
 
@@ -49,6 +50,7 @@ class Graph extends Component<IProps, {}> {
 
       // Add more Perspective configurations here.
       elem.load(this.table);
+      // Added various attributes that were specified to be required in documentation.
       elem.setAttribute("view", "y_line");
             elem.setAttribute("column-pivots", '["stock"]');
             elem.setAttribute("row_pivots", '["timestamp"]');

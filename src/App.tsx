@@ -8,6 +8,7 @@ import './App.css';
  */
 interface IState {
   data: ServerRespond[],
+  /* Added a boolean to control when the graph is displayed*/
   showGraph: Boolean,
 }
 
@@ -23,6 +24,7 @@ class App extends Component<{}, IState> {
       // data saves the server responds.
       // We use this state to parse data down to the child element (Graph) as element property
       data: [],
+      // Initially the graph is not displayed, hence show graph is rendered as false initially
       showGraph: false,
     };
   }
@@ -42,6 +44,7 @@ class App extends Component<{}, IState> {
   getDataFromServer() {
       // Update the state by creating a new array of data that consists of
       // Previous data in the state and the new data from server
+      // Sets the interval, streams the data from the server and then toggles showgraph to be true to display the graph
       let x = 0;
       const interval = setInterval(() => {
           DataStreamer.getData((serverResponds: ServerRespond[]) => {
@@ -51,6 +54,7 @@ class App extends Component<{}, IState> {
                   });
               });
           x++;
+          // if the interval reaches over 1000, clears the intervals
           if (x > 1000) {
               clearInterval(interval); }
   },100);
